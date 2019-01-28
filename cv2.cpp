@@ -19,7 +19,7 @@ int main() {
 	const int imgwidth = 512, imgheight = 384;
 	const int dilation_size = 2;
 			
-	int loRange[3] = {112,155,119};
+	int loRange[3] = {50,155,119};
 	int hiRange[3] = {162,255,255};
 	
 	namedWindow("ustawienia", CV_WINDOW_AUTOSIZE);
@@ -72,25 +72,45 @@ int main() {
 				approxPolyDP(vector<Point2f>(path.begin(), path.end()),approximated,50, false);
 				
 				for (auto &p: approximated) pathV.push_back({(int)p.x,(int)p.y});
-				// polylines(imgOrig,{pathV},false,Scalar(0,255,0),2); // jesli chcemy pokazać ścieżkę
-				if (pathV.size() >= 4) {
-					vector < Point > itr(pathV.end()-4,pathV.end());
+				polylines(imgOrig,{pathV},false,Scalar(0,255,0),2); // jesli chcemy pokazać ścieżkę
+				int pathSize = 5;
+				if (pathV.size() >= pathSize) {
+					vector < Point > itr(pathV.end()-pathSize,pathV.end());
 					int conditions = 0;
 					double factor = (::abs(itr[0].x - itr[1].x) + ::abs(itr[0].y - itr[1].y))*2/3;
-					if ((::abs(itr[0].x - itr[1].x) > factor) && (::abs(itr[0].y - itr[1].y) < factor)) {
+
+					// cout << "x0=" << itr[0].x << " y0=" << itr[0].y << endl;
+					// cout << "x1=" << itr[1].x << " y1=" << itr[1].y << endl;
+					// cout << "x2=" << itr[2].x << " y2=" << itr[2].y << endl;
+					// cout << "x3=" << itr[3].x << " y3=" << itr[3].y << endl;
+					// cout << "x4=" << itr[4].x << " y4=" << itr[4].y << endl;
+
+					if ((::abs(itr[0].y - itr[1].y) > factor) && (::abs(itr[0].x - itr[1].x) < factor)) {
+						// cout << "Linia pionowa 1 !!!" << endl;
 						conditions++;
 					}
-					if ((::abs(itr[1].x - itr[2].x) > factor) && (::abs(itr[1].y - itr[2].y) > factor)) {
+
+					if ((::abs(itr[1].y - itr[2].y) > factor) && (::abs(itr[1].x - itr[2].x) > factor)) {
+						// cout << "Linia skośna 1 !!!" << endl;
 						conditions++;
 					}
-					if ((::abs(itr[2].x - itr[3].x) > factor) && (::abs(itr[2].y - itr[3].y) < factor)) {
+
+					if ((::abs(itr[2].y - itr[3].y) > factor) && (::abs(itr[2].x - itr[3].x) > factor)) {
+						// cout << "Linia skośna 2 !!!" << endl;
 						conditions++;
 					}
-					if (conditions == 3) {
-						cout << "Jest Z!!!" << endl;
+
+					if ((::abs(itr[3].y - itr[4].y) > factor) && (::abs(itr[3].x - itr[4].x) < factor)) {
+						// cout << "Linia pionowa 2 !!!" << endl;
+						conditions++;
+					}
+
+					// cout << endl;
+
+					if (conditions == 4) {
+						cout << "Jest M !!!" << endl;
 						path.clear();
 					}
-//					cout << conditions << "  factor = " << factor << endl;
 				}
 			}
 		}
