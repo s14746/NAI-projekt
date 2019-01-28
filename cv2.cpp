@@ -10,6 +10,7 @@
 #include <tuple>
 #include <algorithm>
 #include <list>
+#include <cstdlib>
 
 using namespace cv;
 using namespace std;
@@ -108,7 +109,8 @@ int main() {
 					// cout << endl;
 
 					if (conditions == 4) {
-						cout << "Jest M !!!" << endl;
+						cout << "Otwieram Mozilla FireFox !!" << endl;
+						system("firefox www.google.com &");
 						path.clear();
 					}
 				}
