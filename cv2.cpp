@@ -15,7 +15,6 @@
 using namespace cv;
 using namespace std;
 
-
 int main() {
 	const int imgwidth = 512, imgheight = 384;
 	const int dilation_size = 2;
@@ -74,9 +73,9 @@ int main() {
 				
 				for (auto &p: approximated) pathV.push_back({(int)p.x,(int)p.y});
 				polylines(imgOrig,{pathV},false,Scalar(0,255,0),2); // jesli chcemy pokazać ścieżkę
-				int pathSize = 5;
-				if (pathV.size() >= pathSize) {
-					vector < Point > itr(pathV.end()-pathSize,pathV.end());
+				int mLetterPathSize = 5;
+				if (pathV.size() >= mLetterPathSize) {
+					vector < Point > itr(pathV.end()-mLetterPathSize,pathV.end());
 					int conditions = 0;
 					double factor = (::abs(itr[0].x - itr[1].x) + ::abs(itr[0].y - itr[1].y))*2/3;
 
@@ -111,6 +110,41 @@ int main() {
 					if (conditions == 4) {
 						cout << "Otwieram Mozilla FireFox !!" << endl;
 						system("firefox www.google.com &");
+						path.clear();
+					}
+				}
+
+				int nLetterPathSize = 4;
+				if (pathV.size() >= nLetterPathSize) { // N
+					vector < Point > itr(pathV.end()-nLetterPathSize,pathV.end());
+					int conditions = 0;
+					double factor = (::abs(itr[0].x - itr[1].x) + ::abs(itr[0].y - itr[1].y))*2/3;
+
+					// cout << "x0=" << itr[0].x << " y0=" << itr[0].y << endl;
+					// cout << "x1=" << itr[1].x << " y1=" << itr[1].y << endl;
+					// cout << "x2=" << itr[2].x << " y2=" << itr[2].y << endl;
+					// cout << "x3=" << itr[3].x << " y3=" << itr[3].y << endl;
+
+					if ((::abs(itr[0].y - itr[1].y) > factor) && (::abs(itr[0].x - itr[1].x) < factor)) {
+						// cout << "Linia pionowa 1 !!!" << endl;
+						conditions++;
+					}
+
+					if ((::abs(itr[1].y - itr[2].y) > factor) && (::abs(itr[1].x - itr[2].x) > factor)) {
+						// cout << "Linia skośna 1 !!!" << endl;
+						conditions++;
+					}
+
+					if ((::abs(itr[2].y - itr[3].y) > factor) && (::abs(itr[2].x - itr[3].x) < factor)) {
+						// cout << "Linia pionowa 2 !!!" << endl;
+						conditions++;
+					}
+
+					// cout << endl;
+
+					if (conditions == 3) {
+						cout << "Otwieram Notepad !!" << endl;
+						system("notepad");
 						path.clear();
 					}
 				}
