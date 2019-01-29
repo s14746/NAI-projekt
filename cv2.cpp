@@ -79,33 +79,21 @@ int main() {
 					int conditions = 0;
 					double factor = (::abs(itr[0].x - itr[1].x) + ::abs(itr[0].y - itr[1].y))*2/3;
 
-					// cout << "x0=" << itr[0].x << " y0=" << itr[0].y << endl;
-					// cout << "x1=" << itr[1].x << " y1=" << itr[1].y << endl;
-					// cout << "x2=" << itr[2].x << " y2=" << itr[2].y << endl;
-					// cout << "x3=" << itr[3].x << " y3=" << itr[3].y << endl;
-					// cout << "x4=" << itr[4].x << " y4=" << itr[4].y << endl;
-
 					if ((::abs(itr[0].y - itr[1].y) > factor) && (::abs(itr[0].x - itr[1].x) < factor)) {
-						// cout << "Linia pionowa 1 !!!" << endl;
 						conditions++;
 					}
 
 					if ((::abs(itr[1].y - itr[2].y) > factor) && (::abs(itr[1].x - itr[2].x) > factor)) {
-						// cout << "Linia skośna 1 !!!" << endl;
 						conditions++;
 					}
 
 					if ((::abs(itr[2].y - itr[3].y) > factor) && (::abs(itr[2].x - itr[3].x) > factor)) {
-						// cout << "Linia skośna 2 !!!" << endl;
 						conditions++;
 					}
 
 					if ((::abs(itr[3].y - itr[4].y) > factor) && (::abs(itr[3].x - itr[4].x) < factor)) {
-						// cout << "Linia pionowa 2 !!!" << endl;
 						conditions++;
 					}
-
-					// cout << endl;
 
 					if (conditions == 4) {
 						cout << "Otwieram Mozilla FireFox !!" << endl;
@@ -120,27 +108,17 @@ int main() {
 					int conditions = 0;
 					double factor = (::abs(itr[0].x - itr[1].x) + ::abs(itr[0].y - itr[1].y))*2/3;
 
-					// cout << "x0=" << itr[0].x << " y0=" << itr[0].y << endl;
-					// cout << "x1=" << itr[1].x << " y1=" << itr[1].y << endl;
-					// cout << "x2=" << itr[2].x << " y2=" << itr[2].y << endl;
-					// cout << "x3=" << itr[3].x << " y3=" << itr[3].y << endl;
-
 					if ((::abs(itr[0].y - itr[1].y) > factor) && (::abs(itr[0].x - itr[1].x) < factor)) {
-						// cout << "Linia pionowa 1 !!!" << endl;
 						conditions++;
 					}
 
 					if ((::abs(itr[1].y - itr[2].y) > factor) && (::abs(itr[1].x - itr[2].x) > factor)) {
-						// cout << "Linia skośna 1 !!!" << endl;
 						conditions++;
 					}
 
 					if ((::abs(itr[2].y - itr[3].y) > factor) && (::abs(itr[2].x - itr[3].x) < factor)) {
-						// cout << "Linia pionowa 2 !!!" << endl;
 						conditions++;
 					}
-
-					// cout << endl;
 
 					if (conditions == 3) {
 						cout << "Otwieram Notepad !!" << endl;
