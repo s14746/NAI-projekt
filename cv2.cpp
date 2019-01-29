@@ -126,6 +126,31 @@ int main() {
 						path.clear();
 					}
 				}
+
+				int cLetterPathSize = 4;
+				if (pathV.size() >= cLetterPathSize) {
+					vector < Point > itr(pathV.end()-cLetterPathSize,pathV.end());
+					int conditions = 0;
+					double factor = (::abs(itr[0].x - itr[1].x) + ::abs(itr[0].y - itr[1].y))*2/3;
+
+					if ((::abs(itr[0].x - itr[1].x) > factor) && (::abs(itr[0].y - itr[1].y) < factor)) {
+						conditions++;
+					}
+
+					if ((::abs(itr[1].y - itr[2].y) > factor) && (::abs(itr[1].x - itr[2].x) < factor)) {
+						conditions++;
+					}
+
+					if ((::abs(itr[2].x - itr[3].x) > factor) && (::abs(itr[2].y - itr[3].y) < factor)) {
+						conditions++;
+					}
+
+					if (conditions == 3) {
+						cout << "Otwieram Chrome !!" << endl;
+						system("google-chrome www.google.com &");
+						path.clear();
+					}
+				}
 			}
 		}
 		imshow("ustawienia", frame);
