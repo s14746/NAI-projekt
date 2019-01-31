@@ -133,7 +133,7 @@ int main() {
 					int conditions = 0;
 					double factor = (::abs(itr[0].x - itr[1].x) + ::abs(itr[0].y - itr[1].y))*2/3;
 
-					if ((::abs(itr[0].x - itr[1].x) > factor) && (::abs(itr[0].y - itr[1].y) < factor)) {
+					if ((::abs(itr[0].x - itr[1].x) > factor) && (::abs(itr[0].y - itr[1].y) < factor) && itr[1].x < itr[0].x) {
 						conditions++;
 					}
 
