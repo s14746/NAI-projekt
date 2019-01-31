@@ -103,12 +103,12 @@ int main() {
 				}
 
 				int nLetterPathSize = 4;
-				if (pathV.size() >= nLetterPathSize) { // N
+				if (pathV.size() >= nLetterPathSize) {
 					vector < Point > itr(pathV.end()-nLetterPathSize,pathV.end());
 					int conditions = 0;
 					double factor = (::abs(itr[0].x - itr[1].x) + ::abs(itr[0].y - itr[1].y))*2/3;
 
-					if ((::abs(itr[0].y - itr[1].y) > factor) && (::abs(itr[0].x - itr[1].x) < factor)) {
+					if ((::abs(itr[0].y - itr[1].y) > factor) && (::abs(itr[0].x - itr[1].x) < factor) && itr[0].y > itr[1].y) {
 						conditions++;
 					}
 
@@ -122,7 +122,7 @@ int main() {
 
 					if (conditions == 3) {
 						cout << "Otwieram Notepad !!" << endl;
-						system("notepad");
+						system("gedit");
 						path.clear();
 					}
 				}
